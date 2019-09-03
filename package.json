@@ -1,0 +1,46 @@
+{
+  "name": "react-native-signature-area",
+  "version": "0.1.0",
+  "description": "React Native component for capture user signature",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hirurgo/react-native-signature-area.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-component",
+    "ios",
+    "android",
+    "windows",
+    "signature",
+    "area",
+    "signaturearea",
+    "signature-area",
+    "canvas"
+  ],
+  "author": "Hirurgo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hirurgo/react-native-signature-area/issues"
+  },
+  "homepage": "https://github.com/Hirurgo/react-native-signature-area#readme",
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-native": "^0.58.6"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4"
+  }
+}
