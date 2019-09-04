@@ -1,4 +1,4 @@
-# react-native-signature-pad
+# react-native-signature-area
 
 ## Features:
 - Pure JavaScript implementation with no native dependencies
@@ -24,5 +24,5 @@ Added:
 ## Installation
 
 ```sh
-$ npm i --save react-native-signature-pad 
+$ npm i --save react-native-signature-area 
 ```
