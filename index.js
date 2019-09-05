@@ -1,15 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, ViewPropTypes, WebView } from 'react-native';
-import {
-  application,
-  errorHandler,
-  executeNativeFunction,
-  handleNativeFunction,
-  handleResize,
-  html,
-  signaturePad
-} from './src';
+import { html, signaturePad, application } from './src';
 
 export default class SignaturePad extends PureComponent {
   webViewRef = React.createRef();
@@ -19,12 +11,8 @@ export default class SignaturePad extends PureComponent {
   source = {
     html: html(
       `"use strict";`
-      + errorHandler
       + signaturePad
-      + application(this.props.dataUrl)
-      + executeNativeFunction
-      + handleNativeFunction
-      + handleResize
+      + application(this.props)
     ) 
   }
 
@@ -70,42 +58,56 @@ export default class SignaturePad extends PureComponent {
     }
   };
 
-  _renderError = args => this.props.onError({details: args});
+  _renderError = args => this.props.onError({ details: args });
 
-  _onError = args => this.props.onError({details: args});
+  _onError = args => this.props.onError({ details: args} );
 
   _onSubmit = ({ dataUrl }) => this.props.onSubmit(dataUrl);
 
-  submit = (width, height) => this.webViewRef.current.postMessage(JSON.stringify({ method: 'submit', args: [ width, height ]  }));
+  submit = (width, height) => {
+    width = typeof width === 'number' ? width : undefined;
+    height = typeof height === 'number' ? height : undefined;
+    this.webViewRef.current.postMessage(JSON.stringify({ method: 'submit', args: [ width, height ] }));
+  }
 
   clear = () => this.webViewRef.current.postMessage(JSON.stringify({ method: 'clear' }));
 
   render = () => (
     <WebView
-      ref={this.webViewRef}
-      onNavigationStateChange={this._onNavigationChange}
-      onMessage={this.onMessage}
-      renderError={this._renderError}
-      source={this.source}
-      scrollEnabled={false}
-      bounces={false}
-      useWebKit={true}
-      javaScriptEnabled={true}
-      style={this.props.style}
+      ref={ this.webViewRef }
+      onNavigationStateChange={ this._onNavigationChange }
+      onMessage={ this.onMessage }
+      renderError={ this._renderError }
+      source={ this.source }
+      scrollEnabled={ false }
+      bounces={ false }
+      useWebKit={ true }
+      javaScriptEnabled={ true }
+      style={ this.props.style }
     />
   )
 }
 
 SignaturePad.propTypes = {
-  onChange: PropTypes.func,
-  onError: PropTypes.func,
-  style: ViewPropTypes.style,
+  dataUrl: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  outputWidth: PropTypes.number,
+  outputHeight: PropTypes.number,
+  minDotWidth: PropTypes.number,
+  maxDotWidth: PropTypes.number,
+  velocityFilterWeight: PropTypes.number,
+  dotSize: PropTypes.number,
+  padding: PropTypes.number,
+  backgroundColor: PropTypes.string,
   penColor: PropTypes.string,
-  dataUrl: PropTypes.string
+  pointWasOutOfCanvas: PropTypes.bool,
+  style: ViewPropTypes.style,
+  onSubmit: PropTypes.func,
+  onError: PropTypes.func,
 };
 
 SignaturePad.defaultProps = {
   onSubmit: () => {},
-  onError: () => {},
-  style: {}
+  onError: () => {}
 };

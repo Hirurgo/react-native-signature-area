@@ -6,23 +6,24 @@ export const signaturePad = `
   ${Point}
   const SignaturePad = function(canvas, options) {
     options = options || {};
-    this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+    this.outputWidth = options.outputWidth;
+    this.outputHeight = options.outputHeight;
     this.minDotWidth = options.minDotWidth || 0.5;
     this.maxDotWidth = options.maxDotWidth || 2.5;
-    this.dotSize = (this.minDotWidth + this.maxDotWidth) / 2;
-    this.penColor = options.penColor || "black";
+    this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+    this.dotSize = options.dotSize || (this.minDotWidth + this.maxDotWidth) / 2;
+    this.padding = options.padding || 10 * this.dotSize;
     this.backgroundColor = options.backgroundColor || "transparent";
-    this.onEnd = options.onEnd || function() {};
+    this.penColor = options.penColor || "black";
+    this.pointWasOutOfCanvas = options.pointWasOutOfCanvas || false;
     this.onBegin = options.onBegin || function() {};  
+    this.onEnd = options.onEnd || function() {};
     this.onSubmit = options.onSubmit || function() {};
-    this.pointWasOutOfCanvas = false;
 
-    canvas.width = options.width || 300;
-    canvas.height = options.height || 100;
-  
     this._canvas = canvas;
-    this._ctx = canvas.getContext("2d");
-    this._padding = 10 * this.dotSize;
+    this._canvas.width = options.width || window.document.body.clientWidth || window.innerWidth || 300;
+    this._canvas.height = options.height || window.document.body.clientHeight || window.innerHeight || 100;
+    this._ctx = this._canvas.getContext("2d");
     this._isEmpty = true;
     this._minX = Infinity;
     this._minY = Infinity;
@@ -32,6 +33,7 @@ export const signaturePad = `
     this._handleMouseEvents();
     this._handleTouchEvents();
     this.clear();
+    if (options.dataUrl) this.fromDataURL(options.dataUrl);
   };
 
   SignaturePad.prototype.clear = function() {
@@ -49,7 +51,7 @@ export const signaturePad = `
     this.onSubmit(
       this._isEmpty
         ? null
-        : this.getDataUrl(width, height)
+        : this.getDataUrl(width || this.outputWidth, height || this.outputHeight)
     );
   };
 
@@ -286,10 +288,10 @@ export const signaturePad = `
   };
   
   SignaturePad.prototype._updateDrawAreaSize = function(x, y, size) {
-    const realMinX = x - size - this._padding;
-    const realMinY = y - size - this._padding;
-    const realMaxX = x + size + this._padding;
-    const realMaxY = y + size + this._padding;
+    const realMinX = x - size - this.padding;
+    const realMinY = y - size - this.padding;
+    const realMaxX = x + size + this.padding;
+    const realMaxY = y + size + this.padding;
 
     if (this._minX > realMinX) this._minX = realMinX;
     if (this._minY > realMinY) this._minY = realMinY;
