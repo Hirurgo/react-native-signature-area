@@ -21,7 +21,7 @@ export const application = (options) => `
       penColor: '${options.penColor || ''}',
       pointWasOutOfCanvas: ${options.pointWasOutOfCanvas},
       onSubmit: function(dataUrl) {
-        executeNativeFunction('_onSubmit', { dataUrl });
+        executeNativeFunction('onSubmit', { dataUrl });
       }
     }
   );
