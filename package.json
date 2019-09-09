@@ -1,6 +1,6 @@
 {
   "name": "react-native-signature-area",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "React Native component for capture user signature",
   "main": "index.js",
   "scripts": {
