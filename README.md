@@ -19,7 +19,7 @@ Added:
 - clip signature functionality
 - React-Native WebView wrapper
 - handle rotate device functionality
-- bidirectional communication with WebView 
+- bidirectional communication with WebView based on postMessages
 
 ## Installation
 
