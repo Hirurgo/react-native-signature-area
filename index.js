@@ -1,7 +1,16 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { StyleSheet, View, ViewPropTypes, WebView } from 'react-native';
+import PropTypes from 'prop-types';
 import { html, signaturePad, application } from './src';
+
+const styles = StyleSheet.create({
+  webView: {
+    // This transparent background color fix layout bug on Android 5.1 and 9
+    // Bug: on fist render WebView render on full screen, and on first touch it collapsed to expected size,
+    // it's hide other components on screen
+    backgroundColor: 'transparent'
+  }
+});
 
 export default class SignaturePad extends PureComponent {
   webViewRef = React.createRef();
@@ -39,7 +48,7 @@ export default class SignaturePad extends PureComponent {
       bounces={ false }
       useWebKit={ true }
       javaScriptEnabled={ true }
-      style={ this.props.style }
+      style={ [this.props.style, styles.webView] }
     />
   )
 }
