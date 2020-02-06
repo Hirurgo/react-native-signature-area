@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, ViewPropTypes, WebView } from 'react-native';
+import { StyleSheet, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
+import { WebView } from 'react-native-webview';
 import { html, signaturePad, application } from './src';
 
 const styles = StyleSheet.create({
