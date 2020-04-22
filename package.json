@@ -29,18 +29,19 @@
   },
   "homepage": "https://github.com/Hirurgo/react-native-signature-area#readme",
   "peerDependencies": {
-    "react": "^16.8.4",
-    "react-native": "^0.58.6"
+    "react": "^16.9",
+    "react-native": ">=0.60 <0.62"
   },
   "dependencies": {
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "react-native-webview": "^8.0.6"
   },
   "devDependencies": {
-    "babel-eslint": "10.0.1",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "babel-eslint": "10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3"
   }
 }
