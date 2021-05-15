@@ -27,7 +27,7 @@ Added:
 ```sh
 $ npm i --save react-native-signature-area 
 ```
-
+or
 ```sh
 $ yarn add react-native-signature-area 
 ```
