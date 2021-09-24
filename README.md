@@ -25,9 +25,9 @@ Added:
 ## Installation
 
 ```sh
-$ npm i --save react-native-signature-area 
+$ npm i --save react-native-signature-area react-native-webview
 ```
 or
 ```sh
-$ yarn add react-native-signature-area 
+$ yarn add react-native-signature-area react-native-webview
 ```
