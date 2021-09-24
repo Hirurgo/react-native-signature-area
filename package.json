@@ -29,12 +29,10 @@
   },
   "homepage": "https://github.com/Hirurgo/react-native-signature-area#readme",
   "peerDependencies": {
-    "react": "^16.9",
-    "react-native": ">=0.60 <0.62"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.0",
-    "react-native-webview": "^11.0.0"
+    "react": ">=16.9",
+    "prop-types": ">=15.6.0",
+    "react-native": ">=0.60",
+    "react-native-webview": ">=7.5.2"
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
